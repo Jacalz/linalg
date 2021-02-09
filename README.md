@@ -13,7 +13,7 @@ An optimized abstraction layer for working with vectors and points in a room, in
 ### rn
 A generic abstraction layer for working with vectors and points in a space of dimension n.
 
-NOTE: Only use this package for dimentions of 4 or higher. The r2 and r3 packages are better optimized and easier to use for their specific use cases.
+***NOTE:*** *Only use this package for dimentions of 4 or higher. The r2 and r3 packages are better optimized and easier to use for their specific use cases.*
 
 ### matrix
 Provides a generic abstraction layer around matrix calculations in a space of dimension n.

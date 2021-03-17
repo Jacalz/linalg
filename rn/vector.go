@@ -5,6 +5,8 @@ import (
 	"math"
 )
 
+var errorInvalidDimension = errors.New("the inputs do not have the same dimension")
+
 // VecN is a vector in the dimension n.
 type VecN struct {
 	Values []float64 // The vector cordinates.
@@ -25,7 +27,7 @@ func NewVecN(u []float64) *VecN {
 func Add(u, v *VecN) (*VecN, error) {
 	dimension := u.Dim()
 	if dimension != v.Dim() {
-		return nil, errors.New("The vectors do not have the same dimension")
+		return nil, errorInvalidDimension
 	}
 
 	new := make([]float64, dimension)
@@ -41,7 +43,7 @@ func Add(u, v *VecN) (*VecN, error) {
 func Sub(u, v *VecN) (*VecN, error) {
 	dimension := u.Dim()
 	if dimension != v.Dim() {
-		return nil, errors.New("The vectors do not have the same dimension")
+		return nil, errorInvalidDimension
 	}
 
 	new := make([]float64, dimension)
@@ -57,7 +59,7 @@ func Sub(u, v *VecN) (*VecN, error) {
 func Mult(u, v *VecN) (*VecN, error) {
 	dimension := u.Dim()
 	if dimension != v.Dim() {
-		return nil, errors.New("The vectors do not have the same dimension")
+		return nil, errorInvalidDimension
 	}
 
 	new := make([]float64, dimension)
@@ -80,9 +82,9 @@ func ScalarMult(u *VecN, a float64) *VecN {
 
 // Abs returns the absolute value (length) of the vector u.
 func Abs(u *VecN) float64 {
-	under := float64(0)
+	under := 0.0
 	for _, val := range u.Values {
-		under += val * val
+		under = math.FMA(val, val, under)
 	}
 
 	return math.Sqrt(under)
@@ -93,12 +95,12 @@ func Abs(u *VecN) float64 {
 func ScalarProduct(u, v *VecN) (float64, error) {
 	dimension := u.Dim()
 	if dimension != v.Dim() {
-		return 0, errors.New("The vectors do not have the same dimension")
+		return 0, errorInvalidDimension
 	}
 
-	under := float64(0)
+	under := 0.0
 	for i, val := range u.Values {
-		under += val * v.Values[i]
+		under = math.FMA(val, v.Values[i], under)
 	}
 
 	return under, nil

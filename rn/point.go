@@ -2,8 +2,6 @@
 // Use packages r2 and r3 for calculations within the plane and room respectivly.
 package rn
 
-import "errors"
-
 // PointN is a point within a three dimensional room.
 type PointN struct {
 	Coord []float64 // The point coordinates.
@@ -19,7 +17,7 @@ func (p *PointN) Dim() int {
 func VecNBetweenPoints(p, q *PointN) (*VecN, error) {
 	dimension := p.Dim()
 	if dimension != q.Dim() {
-		return nil, errors.New("The points do not have the same dimension")
+		return nil, errorInvalidDimension
 	}
 
 	new := make([]float64, dimension)

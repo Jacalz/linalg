@@ -1,7 +1,5 @@
 package matrix
 
-package main
-
 import "testing"
 
 func BenchmarkMult(b *testing.B) {

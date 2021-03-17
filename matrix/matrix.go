@@ -6,7 +6,10 @@ import (
 	"math"
 )
 
-var errorInvalidMultiplication = errors.New("the columns of u must be equal to the rows of v")
+var (
+	errorInvalidMultiplication = errors.New("the columns of u must be equal to the rows of v")
+	errorDifferentSize         = errors.New("the matrix sizes are not equal")
+)
 
 // Matrix is an extension of a 2d slice if float64.
 type Matrix [][]float64
@@ -21,7 +24,7 @@ func (m Matrix) Cols() int {
 	return len(m[0])
 }
 
-// Mult multiplies the matrixes toegether to form anew matrix.
+// Mult multiplies the matrices together to form a new matrix.
 // The new matrix will have the rows as u and columns as b.
 func Mult(u, v Matrix) (Matrix, error) {
 	if u.Cols() != v.Rows() {
@@ -38,6 +41,48 @@ func Mult(u, v Matrix) (Matrix, error) {
 			for k := 0; k < v.Rows(); k++ {
 				data[i][j] = math.FMA(u[i][k], v[k][j], data[i][j])
 			}
+		}
+	}
+
+	return data, nil
+}
+
+// Add adds the matrices together.
+// The matrices must have the same ammount of rows and columns.
+func Add(u, v Matrix) (Matrix, error) {
+	if u.Rows() != v.Rows() || u.Cols() != v.Cols() {
+		return nil, errorDifferentSize
+	}
+
+	data := make([][]float64, v.Rows())
+	for r := range data {
+		data[r] = make([]float64, v.Cols())
+	}
+
+	for i := 0; i < u.Rows(); i++ {
+		for j := 0; j < v.Cols(); j++ {
+			data[i][j] = u[i][j] + v[i][j]
+		}
+	}
+
+	return data, nil
+}
+
+// Sub subtracts the matrix v from u.
+// The matrices must have the same ammount of rows and columns.
+func Sub(u, v Matrix) (Matrix, error) {
+	if u.Rows() != v.Rows() || u.Cols() != v.Cols() {
+		return nil, errorDifferentSize
+	}
+
+	data := make([][]float64, v.Rows())
+	for r := range data {
+		data[r] = make([]float64, v.Cols())
+	}
+
+	for i := 0; i < u.Rows(); i++ {
+		for j := 0; j < v.Cols(); j++ {
+			data[i][j] = u[i][j] - v[i][j]
 		}
 	}
 

@@ -1,7 +1,12 @@
 // Package matrix provides a generic matrix abstraction.
 package matrix
 
-import "errors"
+import (
+	"errors"
+	"math"
+)
+
+var errorInvalidMultiplication = errors.New("the columns of u must be equal to the rows of v")
 
 // Matrix is an extension of a 2d slice if float64.
 type Matrix [][]float64
@@ -20,7 +25,7 @@ func (m Matrix) Cols() int {
 // The new matrix will have the rows as u and columns as b.
 func Mult(u, v Matrix) (Matrix, error) {
 	if u.Cols() != v.Rows() {
-		return nil, errors.New("The columns of u must be equal to the rows of v")
+		return nil, errorInvalidMultiplication
 	}
 
 	data := make([][]float64, v.Rows())
@@ -31,7 +36,7 @@ func Mult(u, v Matrix) (Matrix, error) {
 	for i := 0; i < u.Rows(); i++ {
 		for j := 0; j < v.Cols(); j++ {
 			for k := 0; k < v.Rows(); k++ {
-				data[i][j] += u[i][k] * v[k][j]
+				data[i][j] += math.FMA(u[i][k], v[k][j], data[i][j])
 			}
 		}
 	}

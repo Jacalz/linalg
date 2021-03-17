@@ -31,7 +31,7 @@ func Mult(u, v Matrix) (Matrix, error) {
 	for i := 0; i < u.Rows(); i++ {
 		for j := 0; j < v.Cols(); j++ {
 			for k := 0; k < v.Rows(); k++ {
-				data[i][j] += u[i][k] + v[k][j]
+				data[i][j] += u[i][k] * v[k][j]
 			}
 		}
 	}

@@ -1,10 +1,7 @@
 // Package matrix provides a generic matrix abstraction.
 package matrix
 
-import (
-	"errors"
-	"fmt"
-)
+import "errors"
 
 // Matrix is an extension of a 2d slice if float64.
 type Matrix [][]float64

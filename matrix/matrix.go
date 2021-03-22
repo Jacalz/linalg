@@ -24,6 +24,15 @@ func (m Matrix) Cols() int {
 	return len(m[0])
 }
 
+// New allocates a new matrix with the set ammount of rows and columns.
+func New(rows, cols int) Matrix {
+	data := make([][]float64, rows)
+	for r := range data {
+		data[r] = make([]float64, cols)
+	}
+	return data
+}
+
 // Mult multiplies the matrices together to form a new matrix.
 // The new matrix will have the rows as u and columns as b.
 func Mult(u, v Matrix) (Matrix, error) {
@@ -31,14 +40,11 @@ func Mult(u, v Matrix) (Matrix, error) {
 		return nil, errorInvalidMultiplication
 	}
 
-	data := make([][]float64, v.Rows())
-	for r := range data {
-		data[r] = make([]float64, v.Cols())
-	}
-
-	for i := 0; i < u.Rows(); i++ {
-		for j := 0; j < v.Cols(); j++ {
-			for k := 0; k < v.Rows(); k++ {
+	rows, cols := u.Rows(), v.Cols()
+	data := New(rows, cols)
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			for k := 0; k < rows; k++ {
 				data[i][j] = math.FMA(u[i][k], v[k][j], data[i][j])
 			}
 		}
@@ -50,17 +56,14 @@ func Mult(u, v Matrix) (Matrix, error) {
 // Add adds the matrices together.
 // The matrices must have the same ammount of rows and columns.
 func Add(u, v Matrix) (Matrix, error) {
-	if u.Rows() != v.Rows() || u.Cols() != v.Cols() {
+	rows, cols := u.Rows(), u.Cols()
+	if rows != v.Rows() || cols != v.Cols() {
 		return nil, errorDifferentSize
 	}
 
-	data := make([][]float64, v.Rows())
-	for r := range data {
-		data[r] = make([]float64, v.Cols())
-	}
-
-	for i := 0; i < u.Rows(); i++ {
-		for j := 0; j < v.Cols(); j++ {
+	data := New(rows, cols)
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
 			data[i][j] = u[i][j] + v[i][j]
 		}
 	}
@@ -71,17 +74,14 @@ func Add(u, v Matrix) (Matrix, error) {
 // Sub subtracts the matrix v from u.
 // The matrices must have the same ammount of rows and columns.
 func Sub(u, v Matrix) (Matrix, error) {
-	if u.Rows() != v.Rows() || u.Cols() != v.Cols() {
+	rows, cols := u.Rows(), u.Cols()
+	if rows != v.Rows() || cols != v.Cols() {
 		return nil, errorDifferentSize
 	}
 
-	data := make([][]float64, v.Rows())
-	for r := range data {
-		data[r] = make([]float64, v.Cols())
-	}
-
-	for i := 0; i < u.Rows(); i++ {
-		for j := 0; j < v.Cols(); j++ {
+	data := New(rows, cols)
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
 			data[i][j] = u[i][j] - v[i][j]
 		}
 	}

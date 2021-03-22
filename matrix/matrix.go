@@ -53,6 +53,19 @@ func Mult(u, v Matrix) (Matrix, error) {
 	return data, nil
 }
 
+// ScalarMult multiplies the vector u with the scalar s.
+func ScalarMult(u Matrix, s float64) Matrix {
+	rows, cols := u.Rows(), u.Cols()
+	data := New(rows, cols)
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			data[i][j] = u[i][j] * s
+		}
+	}
+
+	return data
+}
+
 // Add adds the matrices together.
 // The matrices must have the same ammount of rows and columns.
 func Add(u, v Matrix) (Matrix, error) {
@@ -87,4 +100,17 @@ func Sub(u, v Matrix) (Matrix, error) {
 	}
 
 	return data, nil
+}
+
+// Transp returns the transposed matrix of u.
+func Transp(u Matrix) Matrix {
+	rows, cols := u.Rows(), u.Cols()
+	data := New(cols, rows)
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			data[j][i] = u[i][j]
+		}
+	}
+
+	return data
 }

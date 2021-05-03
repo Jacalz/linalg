@@ -4,11 +4,14 @@ package matrix
 import (
 	"errors"
 	"math"
+
+	"github.com/Jacalz/linalg/rn"
 )
 
 var (
 	errorInvalidMultiplication = errors.New("the columns of u must be equal to the rows of v")
 	errorDifferentSize         = errors.New("the matrix sizes are not equal")
+	errorNotQuadratic          = errors.New("the matrix must be quadratic")
 )
 
 // Matrix is an extension of a 2d slice if float64.
@@ -102,8 +105,8 @@ func Sub(u, v Matrix) (Matrix, error) {
 	return data, nil
 }
 
-// Transp returns the transposed matrix of u.
-func Transp(u Matrix) Matrix {
+// Transpose returns the transposed matrix of u.
+func Transpose(u Matrix) Matrix {
 	rows, cols := u.Rows(), u.Cols()
 	data := New(cols, rows)
 	for i := 0; i < rows; i++ {
@@ -113,4 +116,61 @@ func Transp(u Matrix) Matrix {
 	}
 
 	return data
+}
+
+// Orthogonal returns true if the matrix is orthogonal.
+// An error will be returned if the matrix is not quadratic.
+func Orthogonal(u Matrix) (bool, error) {
+	if u.Rows() != u.Cols() {
+		return false, errorNotQuadratic
+	}
+
+	rows := u.Rows()
+	rowsum := float64(0)
+	for i := 0; i < rows; i++ { // ON-matrix => A * A^t == I
+		for j := 0; j < rows; j++ {
+			for k := 0; k < rows; k++ {
+				rowsum = math.FMA(u[i][k], u[j][k], rowsum)
+			}
+
+			if (i != j && rowsum != 0) || (i == j && rowsum != 1) {
+				return false, nil
+			}
+
+			rowsum = 0
+		}
+	}
+
+	return true, nil
+}
+
+// ON returns true if the matrix is an ON-matrix.
+// It returns an error if the matrix is not quadratic.
+func ON(u Matrix) (bool, error) {
+	if u.Rows() != u.Cols() {
+		return false, errorNotQuadratic
+	}
+
+	rows := u.Rows()
+	rowsum := float64(0)
+	for i := 0; i < rows; i++ {
+		if length := rn.Abs(u[i]); length != 1 {
+			return false, nil
+		}
+
+		// Manual inlining of part of the Orthogonal function.
+		for j := 0; j < rows; j++ {
+			for k := 0; k < rows; k++ {
+				rowsum = math.FMA(u[i][k], u[j][k], rowsum)
+			}
+
+			if (i != j && rowsum != 0) || (i == j && rowsum != 1) {
+				return false, nil
+			}
+
+			rowsum = 0
+		}
+	}
+
+	return true, nil
 }

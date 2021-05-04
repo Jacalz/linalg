@@ -7,6 +7,6 @@ type Point2 struct {
 }
 
 // Vec3BetweenPoints returns a vector from point a to point b.
-func Vec3BetweenPoints(p, q *Point2) *Vec2 {
-	return &Vec2{q.X - p.X, q.Y - p.Y}
+func Vec3BetweenPoints(p, q Point2) Vec2 {
+	return Vec2{q.X - p.X, q.Y - p.Y}
 }

@@ -24,6 +24,10 @@ func (m Matrix) Rows() int {
 
 // Cols returns the amount of columns in the matrix.
 func (m Matrix) Cols() int {
+	if m.Rows() == 0 {
+		return 0
+	}
+
 	return len(m[0])
 }
 
@@ -104,7 +108,7 @@ func Add(u, v Matrix) (Matrix, error) {
 	return data, nil
 }
 
-// Add adds the vector to the matrix.
+// AddVec adds the vector to the matrix.
 // The vector must be of the same length as the matrix rows.
 func AddVec(u Matrix, v rn.VecN) (Matrix, error) {
 	rows, cols := u.Rows(), u.Cols()
@@ -134,6 +138,24 @@ func Sub(u, v Matrix) (Matrix, error) {
 	for i := 0; i < rows; i++ {
 		for j := 0; j < cols; j++ {
 			data[i][j] = u[i][j] - v[i][j]
+		}
+	}
+
+	return data, nil
+}
+
+// SubVec subtracts the vector from the matrix.
+// The vector must be of the same length as the matrix rows.
+func SubVec(u Matrix, v rn.VecN) (Matrix, error) {
+	rows, cols := u.Rows(), u.Cols()
+	if rows != v.Dim() {
+		return nil, errorDifferentSize
+	}
+
+	data := New(rows, cols)
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			data[i][j] = u[i][j] - v[i]
 		}
 	}
 

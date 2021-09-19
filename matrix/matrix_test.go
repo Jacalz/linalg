@@ -113,3 +113,43 @@ func TestAddVec(t *testing.T) {
 
 	assert.Equal(t, expected, actual)
 }
+
+func TestSub(t *testing.T) {
+	u := Matrix{
+		{1, 2, 3},
+		{4, 5, 6},
+	}
+
+	actual, err := Sub(u, u)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expected := Matrix{
+		{0, 0, 0},
+		{0, 0, 0},
+	}
+
+	assert.Equal(t, expected, actual)
+}
+
+func TestSubVec(t *testing.T) {
+	u := Matrix{
+		{1, 2, 3},
+		{4, 5, 6},
+	}
+
+	v := rn.VecN{1, 2}
+
+	actual, err := SubVec(u, v)
+	if err != nil {
+		t.Error(err)
+	}
+
+	expected := Matrix{
+		{0, 1, 2},
+		{2, 3, 4},
+	}
+
+	assert.Equal(t, expected, actual)
+}

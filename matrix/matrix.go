@@ -36,8 +36,25 @@ func New(rows, cols int) Matrix {
 	return data
 }
 
+// NewFromVec creates a new matrix from a set of vectors.
+// The vectors are assummed as column vectors with the same length.
+func NewFromVec(vectors ...rn.VecN) Matrix {
+	if len(vectors) < 1 {
+		return nil
+	}
+
+	data := New(len(vectors[0]), len(vectors))
+	for r := range data {
+		for c := range data[r] {
+			data[r][c] = vectors[c][r]
+		}
+	}
+
+	return data
+}
+
 // Mult multiplies the matrices together to form a new matrix.
-// The new matrix will have the rows as u and columns as b.
+// The new matrix will have the same rows as u and columns as v.
 func Mult(u, v Matrix) (Matrix, error) {
 	if u.Cols() != v.Rows() {
 		return nil, errorInvalidMultiplication
@@ -47,7 +64,7 @@ func Mult(u, v Matrix) (Matrix, error) {
 	data := New(rows, cols)
 	for i := 0; i < rows; i++ {
 		for j := 0; j < cols; j++ {
-			for k := 0; k < rows; k++ {
+			for k := 0; k < v.Rows(); k++ {
 				data[i][j] = math.FMA(u[i][k], v[k][j], data[i][j])
 			}
 		}
@@ -81,6 +98,24 @@ func Add(u, v Matrix) (Matrix, error) {
 	for i := 0; i < rows; i++ {
 		for j := 0; j < cols; j++ {
 			data[i][j] = u[i][j] + v[i][j]
+		}
+	}
+
+	return data, nil
+}
+
+// Add adds the vector to the matrix.
+// The vector must be of the same length as the matrix rows.
+func AddVec(u Matrix, v rn.VecN) (Matrix, error) {
+	rows, cols := u.Rows(), u.Cols()
+	if rows != v.Dim() {
+		return nil, errorDifferentSize
+	}
+
+	data := New(rows, cols)
+	for i := 0; i < rows; i++ {
+		for j := 0; j < cols; j++ {
+			data[i][j] = u[i][j] + v[i]
 		}
 	}
 

@@ -21,8 +21,8 @@ func Sub(u, v Vec2) Vec2 {
 	return Vec2{u.X - v.X, u.Y - v.Y}
 }
 
-// Mult multiplies the vector u with the scalar s.
-func Mult(u Vec2, s float64) Vec2 {
+// ScalarMult multiplies the vector u with the scalar s.
+func ScalarMult(u Vec2, s float64) Vec2 {
 	return Vec2{u.X * s, u.Y * s}
 }
 
@@ -38,13 +38,13 @@ func ScalarProduct(u, v Vec2) float64 {
 
 // UnitVector returns a unit vector (length 1) from u.
 func UnitVector(u Vec2) Vec2 {
-	return Mult(u, 1/Abs(u))
+	return ScalarMult(u, 1/Abs(u))
 }
 
 // OrthoProject projects the vector u orthogonallY on the vector v.
 func OrthoProject(u, v Vec2) Vec2 {
 	e := UnitVector(v)
-	return Mult(e, ScalarProduct(u, e))
+	return ScalarMult(e, ScalarProduct(u, e))
 }
 
 // Parallel returns true if the vectors u and v are parallell.

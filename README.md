@@ -1,6 +1,6 @@
 # linalg
 Easy-to-use abstractions around Linear Algebra calculations. Written in pure Go with no external dependencies.
-The library provides three packages for working with vectors and points as well as one for working with matricies.
+The library provides three packages for working with vectors and points as well as one for working with matricies. The goal is to be as easy to use as possible while keeping good performance.
 
 ***NOTE:*** *This package is work in progress and might see large changes going forward. Use at your own risk.*
 

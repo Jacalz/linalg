@@ -1,6 +1,6 @@
 # linalg
 Easy-to-use abstractions around Linear Algebra calculations. Written in pure Go with no external dependencies.
-The library provides three four packages for working with vectors and points and one matrix package.
+The library provides three packages for working with vectors and points as well as one for working with matricies.
 
 ## Packages
 
@@ -19,11 +19,11 @@ A generic abstraction layer for working with vectors and points in a space of di
 Provides a generic abstraction layer around matrix calculations in a space of dimension n.
 
 ## Requirements
-A [Go](https://golang.org/) compiler of a recent version should do (no specific version requirement just yet).
+A [Go](https://golang.org/) compiler of a recent version should do. Official support will be for the two latest Go versions but older versions will most likely work without issues.
 
 ## Contributing
 Contributions are strongly appreciated. Everything from creating bug reports to contributing code will help the project a lot, so please feel free to help in any way, shape or form that you feel comfortable with.
 
 ## License
 
-- Linalg is licensed under the `GNU LESSER GENERAL PUBLIC LICENSE Version 2.1`.
+Linalg is licensed under the `BSD 3-Clause License` and freely avaliable to all of those that wish to use it.

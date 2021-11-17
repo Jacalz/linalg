@@ -2,6 +2,8 @@
 Easy-to-use abstractions around Linear Algebra calculations. Written in pure Go with no external dependencies.
 The library provides three packages for working with vectors and points as well as one for working with matricies.
 
+***NOTE:*** *This package is work in progress and might see large changes going forward. Use at your own risk.*
+
 ## Packages
 
 ### r2

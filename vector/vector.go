@@ -137,3 +137,8 @@ func AngleBetween(u, v VecN) (float64, error) {
 
 	return math.Acos(scalar / (Abs(u) * Abs(v))), nil
 }
+
+// TODO: Implement calculations for distance between vectors.
+// func DistanceBetween(u, v VecN) float64 {
+// 	return 0
+// }

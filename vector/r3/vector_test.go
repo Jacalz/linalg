@@ -1,6 +1,7 @@
 package r3
 
 import (
+	"math"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -23,4 +24,29 @@ func TestSub(t *testing.T) {
 
 	assert.Equal(t, Vec3{-10, 8, -10}, Sub(u, v))
 	assert.Equal(t, Vec3{10, -8, 10}, Sub(v, u))
+}
+
+func TestScalarMult(t *testing.T) {
+	u := Vec3{0, 0, 0}
+	v := Vec3{15, -2, 1.5}
+	w := Vec3{-10, 6, 5}
+
+	assert.Equal(t, u, ScalarMult(u, 29.5))
+	assert.Equal(t, Vec3{30, -4, 3}, ScalarMult(v, 2))
+	assert.Equal(t, Vec3{-15, 9, 7.5}, ScalarMult(w, 1.5))
+}
+
+func TestAbs(t *testing.T) {
+	u := Vec3{3, 4, -2}
+	v := Vec3{15, -2, 0}
+
+	assert.Equal(t, math.Sqrt(u.X*u.X+u.Y*u.Y+u.Z*u.Z), Abs(u))
+	assert.Equal(t, math.Sqrt(v.X*v.X+v.Y*v.Y+v.Z*v.Z), Abs(v))
+
+	assert.Equal(t, 1.0, Abs(UnitVector(u)))
+	assert.Equal(t, 1.0, Abs(UnitVector(v)))
+
+	u = Vec3{0, 5, 0}
+	v = Vec3{0, 0, 5}
+	assert.Equal(t, Abs(v), Abs(u))
 }

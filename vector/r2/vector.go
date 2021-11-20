@@ -61,3 +61,8 @@ func Orthogonal(u, v Vec2) bool {
 func AngleBetween(u, v Vec2) float64 {
 	return math.Acos(ScalarProduct(u, v) / (Abs(u) * Abs(v)))
 }
+
+// TODO: Implement calculations for distance between vectors.
+// func DistanceBetween(u, v Vec2) float64 {
+// 	return 0
+// }

@@ -80,3 +80,8 @@ func InSamePlane(u, v, w Vec3) bool {
 func AngleBetween(u, v Vec3) float64 {
 	return math.Acos(ScalarProduct(u, v) / (Abs(u) * Abs(v)))
 }
+
+// TODO: Implement calculations for distance between vectors.
+// func DistanceBetween(u, v Vec3) float64 {
+// 	return 0
+// }

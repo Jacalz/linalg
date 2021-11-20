@@ -64,6 +64,8 @@ func Mult(u, v Matrix) (Matrix, error) {
 		return nil, errorInvalidMultiplication
 	}
 
+	// TODO: Use Strassen Algorithm, https://en.wikipedia.org/wiki/Strassen_algorithm
+
 	rows, cols := u.Rows(), v.Cols()
 	data := New(rows, cols)
 	for i := 0; i < rows; i++ {

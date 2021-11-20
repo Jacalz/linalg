@@ -1,4 +1,4 @@
-// Package r2 provides vectors and operations optimized for three dimensions.
+// Package r3 provides vectors and operations optimized for three dimensions.
 package r3
 
 // Point3 is a point within three dimensions.

@@ -1,4 +1,4 @@
-// Package rn provides a general vector library for any dimension.
+// Package vector provides a general vector library for any dimension.
 package vector
 
 // PointN is a point within a three dimensional room.

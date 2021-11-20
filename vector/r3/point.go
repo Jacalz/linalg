@@ -1,4 +1,4 @@
-// Package r3 provides easy-to-use abstractions optimized for three dimensions.
+// Package r2 provides vectors and operations optimized for three dimensions.
 package r3
 
 // Point3 is a point within a three dimensional room.

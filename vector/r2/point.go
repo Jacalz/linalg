@@ -1,4 +1,4 @@
-// Package r2 provides easy-to-use abstractions optimized for two dimensions.
+// Package r2 provides vectors and operations optimized for two dimensions.
 package r2
 
 // Point2 is a point within a two dimensional plane.

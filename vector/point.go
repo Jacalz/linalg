@@ -1,5 +1,4 @@
-// Package rn provides a general, but less optimized, library for up to n dimensions.
-// Use packages r2 and r3 for calculations within the plane and room respectivly.
+// Package rn provides a general vector library for any dimension.
 package vector
 
 // PointN is a point within a three dimensional room.

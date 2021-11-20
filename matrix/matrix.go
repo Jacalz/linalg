@@ -1,4 +1,4 @@
-// Package matrix provides a generic matrix abstraction.
+// Package matrix provides matricies and operations for any dimension.
 package matrix
 
 import (

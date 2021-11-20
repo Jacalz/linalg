@@ -3,7 +3,7 @@ package matrix
 import (
 	"testing"
 
-	"github.com/Jacalz/linalg/rn"
+	"github.com/Jacalz/linalg/vector"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -18,9 +18,9 @@ func TestNew(t *testing.T) {
 }
 
 func TestNewFromVec(t *testing.T) {
-	a := rn.VecN{2, -3}
-	b := rn.VecN{5, 7}
-	c := rn.VecN{-5, 13}
+	a := vector.VecN{2, -3}
+	b := vector.VecN{5, 7}
+	c := vector.VecN{-5, 13}
 
 	expected := Matrix{
 		{2, 5, -5},
@@ -99,7 +99,7 @@ func TestAddVec(t *testing.T) {
 		{4, 5, 6},
 	}
 
-	v := rn.VecN{1, 2}
+	v := vector.VecN{1, 2}
 
 	actual, err := AddVec(u, v)
 	if err != nil {
@@ -139,7 +139,7 @@ func TestSubVec(t *testing.T) {
 		{4, 5, 6},
 	}
 
-	v := rn.VecN{1, 2}
+	v := vector.VecN{1, 2}
 
 	actual, err := SubVec(u, v)
 	if err != nil {

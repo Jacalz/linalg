@@ -1,6 +1,6 @@
 // Package rn provides a general, but less optimized, library for up to n dimensions.
 // Use packages r2 and r3 for calculations within the plane and room respectivly.
-package rn
+package vector
 
 // PointN is a point within a three dimensional room.
 type PointN []float64

@@ -1,29 +1,25 @@
 # linalg
-Easy-to-use abstractions around Linear Algebra calculations. Written in pure Go with no external dependencies.
-The library provides three packages for working with vectors and points as well as one for working with matricies. The goal is to be as easy to use as possible while keeping good performance.
+
+Fast and easy-to-use packages for Linear Algebra calculations. Written in pure Go with no external dependencies.
+The goal is to provide vector and matrix implementations that are cross-platform, fast and easy-to-use. 
 
 ***NOTE:*** *This package is work in progress and might see large changes going forward. Use at your own risk.*
 
 ## Packages
 
-### r2
-An optimized abstraction layer for working with vectors and points on a plane, in two diemensions.
+Below is a list of the avaliable packages.
 
-### r3
-An optimized abstraction layer for working with vectors and points in a room, in three diemensions.
-
-### rn
-A generic abstraction layer for working with vectors and points in a space of dimension n.
-
-***NOTE:*** *Only use this package for dimentions of 4 or higher. The r2 and r3 packages are better optimized and easier to use for their specific use cases.*
-
-### matrix
-Provides a generic abstraction layer around matrix calculations in a space of dimension n.
+- **github.com/Jacalz/linalg/matrix**: Provides a package for working with matricies in any dimension.
+- **github.com/Jacalz/linalg/vector**: Provides a package for working with vectors in any dimension.
+  - **github.com/Jacalz/linalg/vector/r2**: Optimized package for working with vectors in two dimensions.
+  - **github.com/Jacalz/linalg/vector/r3**: Optimized package for working with vectors in three dimensions.
 
 ## Requirements
-A [Go](https://golang.org/) compiler of a recent version should do. Official support will be for the two latest Go versions but older versions will most likely work without issues.
+
+A [Go](https://golang.org/) compiler of a recent version should do. Official support will be for the two latest stable Go versions, but older versions might still work without issues. For the currently recommended minimum version, see [go.mod](./go.mod).
 
 ## Contributing
+
 Contributions are strongly appreciated. Everything from creating bug reports to contributing code will help the project a lot, so please feel free to help in any way, shape or form that you feel comfortable with.
 
 ## License

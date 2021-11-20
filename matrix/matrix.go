@@ -5,7 +5,7 @@ import (
 	"errors"
 	"math"
 
-	"github.com/Jacalz/linalg/rn"
+	"github.com/Jacalz/linalg/vector"
 )
 
 var (
@@ -42,7 +42,7 @@ func New(rows, cols int) Matrix {
 
 // NewFromVec creates a new matrix from a set of vectors.
 // The vectors are assummed as column vectors with the same length.
-func NewFromVec(vectors ...rn.VecN) Matrix {
+func NewFromVec(vectors ...vector.VecN) Matrix {
 	if len(vectors) < 1 {
 		return nil
 	}
@@ -110,7 +110,7 @@ func Add(u, v Matrix) (Matrix, error) {
 
 // AddVec adds the vector to the matrix.
 // The vector must be of the same length as the matrix rows.
-func AddVec(u Matrix, v rn.VecN) (Matrix, error) {
+func AddVec(u Matrix, v vector.VecN) (Matrix, error) {
 	rows, cols := u.Rows(), u.Cols()
 	if rows != v.Dim() {
 		return nil, errorDifferentSize
@@ -146,7 +146,7 @@ func Sub(u, v Matrix) (Matrix, error) {
 
 // SubVec subtracts the vector from the matrix.
 // The vector must be of the same length as the matrix rows.
-func SubVec(u Matrix, v rn.VecN) (Matrix, error) {
+func SubVec(u Matrix, v vector.VecN) (Matrix, error) {
 	rows, cols := u.Rows(), u.Cols()
 	if rows != v.Dim() {
 		return nil, errorDifferentSize
@@ -211,7 +211,7 @@ func ON(u Matrix) (bool, error) {
 	rows := u.Rows()
 	rowsum := float64(0)
 	for i := 0; i < rows; i++ {
-		if length := rn.Abs(u[i]); length != 1 {
+		if length := vector.Abs(u[i]); length != 1 {
 			return false, nil
 		}
 

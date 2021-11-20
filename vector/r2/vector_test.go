@@ -49,3 +49,13 @@ func TestAbs(t *testing.T) {
 	v = Vec2{0, 5}
 	assert.Equal(t, Abs(v), Abs(u))
 }
+
+func TestParalell(t *testing.T) {
+	u := Vec2{3, 4}
+	v := Vec2{15, -2}
+
+	assert.Equal(t, Parallel(u, v), Parallel(v, u))
+	assert.True(t, Parallel(u, ScalarMult(u, 2.5)))
+	assert.True(t, Parallel(u, UnitVector(u)))
+	assert.False(t, Parallel(u, v))
+}

@@ -49,7 +49,7 @@ func OrthoProject(u, v Vec2) Vec2 {
 
 // Parallel returns true if the vectors u and v are parallell.
 func Parallel(u, v Vec2) bool {
-	return u.X/v.X == u.Y/v.Y
+	return u.X*v.Y == u.Y*v.X
 }
 
 // Orthogonal returns true if the vectors u and v are orthogonal.

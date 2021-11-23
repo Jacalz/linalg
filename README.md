@@ -10,6 +10,7 @@ The goal is to provide vector and matrix implementations that are cross-platform
 Below is a list of the avaliable packages.
 
 - **github.com/Jacalz/linalg/matrix**: Provides a package for working with matricies in any dimension.
+  - **github.com/Jacalz/linalg/matrix/constants**: Predefined matricies for specific use cases.
 - **github.com/Jacalz/linalg/vector**: Provides a package for working with vectors in any dimension.
   - **github.com/Jacalz/linalg/vector/r2**: Optimized package for working with vectors in two dimensions.
   - **github.com/Jacalz/linalg/vector/r3**: Optimized package for working with vectors in three dimensions.

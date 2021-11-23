@@ -31,9 +31,15 @@ func ScalarMult(u Vec3, s float64) Vec3 {
 	return Vec3{u.X * s, u.Y * s, u.Z * s}
 }
 
-// Abs returns the absolute value (length) of the vector u.
-func Abs(u Vec3) float64 {
-	return math.Sqrt(u.X*u.X + u.Y*u.Y + u.Z*u.Z)
+// Length returns the absolute value (length) of the vector u.
+func Length(u Vec3) float64 {
+	return math.Sqrt(LengthSquared(u))
+}
+
+// LengthSquared returns the square of the absolute value (length) of the vector u.
+// It is faster to use this function than to square the length from Length().
+func LengthSquared(u Vec3) float64 {
+	return u.X*u.X + u.Y*u.Y + u.Z*u.Z
 }
 
 // ScalarProduct returns the scalar product of the vectors u and v.
@@ -52,7 +58,7 @@ func CrossProduct(u, v Vec3) Vec3 {
 
 // UnitVector returns a unit vector (length 1) from u.
 func UnitVector(u Vec3) Vec3 {
-	return ScalarMult(u, 1/Abs(u))
+	return ScalarMult(u, 1/Length(u))
 }
 
 // OrthoProject projects the vector u orthogonallY on the vector v.
@@ -78,7 +84,7 @@ func InSamePlane(u, v, w Vec3) bool {
 
 // AngleBetween returns the angle, in radians, between the vetors u and v.
 func AngleBetween(u, v Vec3) float64 {
-	return math.Acos(ScalarProduct(u, v) / (Abs(u) * Abs(v)))
+	return math.Acos(ScalarProduct(u, v) / (Length(u) * Length(v)))
 }
 
 // TODO: Implement calculations for distance between vectors.

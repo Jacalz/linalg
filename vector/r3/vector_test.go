@@ -36,17 +36,35 @@ func TestScalarMult(t *testing.T) {
 	assert.Equal(t, Vec3{-15, 9, 7.5}, ScalarMult(w, 1.5))
 }
 
-func TestAbs(t *testing.T) {
+func TestLength(t *testing.T) {
 	u := Vec3{3, 4, -2}
 	v := Vec3{15, -2, 0}
 
-	assert.Equal(t, math.Sqrt(u.X*u.X+u.Y*u.Y+u.Z*u.Z), Abs(u))
-	assert.Equal(t, math.Sqrt(v.X*v.X+v.Y*v.Y+v.Z*v.Z), Abs(v))
+	assert.Equal(t, math.Sqrt(u.X*u.X+u.Y*u.Y+u.Z*u.Z), Length(u))
+	assert.Equal(t, math.Sqrt(v.X*v.X+v.Y*v.Y+v.Z*v.Z), Length(v))
 
-	assert.Equal(t, 1.0, Abs(UnitVector(u)))
-	assert.Equal(t, 1.0, Abs(UnitVector(v)))
+	assert.Equal(t, 1.0, Length(UnitVector(u)))
+	assert.Equal(t, 1.0, Length(UnitVector(v)))
 
 	u = Vec3{0, 5, 0}
 	v = Vec3{0, 0, 5}
-	assert.Equal(t, Abs(v), Abs(u))
+	assert.Equal(t, Length(v), Length(u))
+}
+
+func TestLengthSquared(t *testing.T) {
+	u := Vec3{3, 4, -2}
+	v := Vec3{15, -2, 0}
+
+	assert.Equal(t, u.X*u.X+u.Y*u.Y+u.Z*u.Z, LengthSquared(u))
+	assert.Equal(t, v.X*v.X+v.Y*v.Y+v.Z*v.Z, LengthSquared(v))
+
+	assert.Equal(t, math.Round(Length(u)*Length(u)), LengthSquared(u))
+	assert.Equal(t, math.Round(Length(v)*Length(v)), LengthSquared(v))
+
+	assert.Equal(t, 1.0, LengthSquared(UnitVector(u)))
+	assert.Equal(t, 1.0, LengthSquared(UnitVector(v)))
+
+	u = Vec3{0, 5, 0}
+	v = Vec3{0, 0, 5}
+	assert.Equal(t, LengthSquared(v), LengthSquared(u))
 }

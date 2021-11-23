@@ -213,7 +213,7 @@ func ON(u Matrix) (bool, error) {
 	rows := u.Rows()
 	rowsum := float64(0)
 	for i := 0; i < rows; i++ {
-		if length := vector.Abs(u[i]); length != 1 {
+		if length := vector.Length(u[i]); length != 1 {
 			return false, nil
 		}
 

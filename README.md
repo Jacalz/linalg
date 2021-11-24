@@ -23,6 +23,9 @@ A [Go](https://golang.org/) compiler of a recent version should do. Official sup
 
 Contributions are strongly appreciated. Everything from creating bug reports to contributing code will help the project a lot, so please feel free to help in any way, shape or form that you feel comfortable with.
 
+## Packages using this
+- [Linedisp](https://github.com/Jacalz/linedisp): Display lines in Fyne using linear algebra! 
+
 ## License
 
 Linalg is licensed under the `BSD 3-Clause License` and freely avaliable to all of those that wish to use it.
